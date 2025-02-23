@@ -7,7 +7,7 @@ const Loading = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      window.location.href = "https://drive.google.com/file/d/1IiOZrxfWkUT_D_EQ0yUU2lhyEfGEpXGz/view?usp=drive_link";
+      window.location.href = "https://drive.google.com/file/d/1HXaWVWHJNIRgLv0uxL5BmDo0CfWV6IYz/view?usp=sharing";
     }, 7000);
 
     return () => clearTimeout(timer);
