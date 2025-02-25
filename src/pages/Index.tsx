@@ -35,6 +35,13 @@ const Index = () => {
 
   const handleClick = async (data: FormData) => {
     try {
+      console.log('Dados a serem enviados:', {
+        email: data.email,
+        has_business: data.hasBusinesss === 'yes',
+        business_instagram: data.businessInstagram || null,
+        created_at: new Date().toISOString(),
+      });
+
       // Inserir dados no Supabase
       const { error } = await supabase
         .from('leads')
@@ -48,19 +55,21 @@ const Index = () => {
         ]);
 
       if (error) {
+        console.error('Erro do Supabase:', error);
         throw error;
       }
 
+      console.log('Dados salvos com sucesso!');
       // Redirecionar para a página de loading
       navigate("/loading");
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Erro detalhado:', error);
       alert('Ocorreu um erro ao salvar seus dados. Por favor, tente novamente.');
     }
   };
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
+    console.log('Formulário submetido com os dados:', data);
     setProgress(100);
     handleClick(data);
   };
