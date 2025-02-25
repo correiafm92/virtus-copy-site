@@ -36,7 +36,7 @@ const Index = () => {
   const handleClick = async (data: FormData) => {
     try {
       console.log('Dados a serem enviados:', {
-        email: data.email,
+        'email (text)': data.email,
         has_business: data.hasBusinesss === 'yes',
         business_instagram: data.businessInstagram || null,
         created_at: new Date().toISOString(),
@@ -47,7 +47,7 @@ const Index = () => {
         .from('leads')
         .insert([
           {
-            email: data.email,
+            'email (text)': data.email,
             has_business: data.hasBusinesss === 'yes',
             business_instagram: data.businessInstagram || null,
             created_at: new Date().toISOString(),
