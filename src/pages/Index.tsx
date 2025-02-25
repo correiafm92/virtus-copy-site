@@ -1,7 +1,7 @@
 
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type FormData = {
   email: string;
@@ -32,7 +32,7 @@ const Index = () => {
   };
 
   // Update progress when form fields change
-  React.useEffect(() => {
+  useEffect(() => {
     setProgress(calculateProgress());
   }, [watchAllFields]);
 
