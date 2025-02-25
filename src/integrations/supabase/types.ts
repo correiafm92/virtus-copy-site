@@ -27,7 +27,7 @@ export type Database = {
         Update: {
           business_instagram?: string | null
           created_at?: string | null
-          "email (text)"?: string
+          "email"?: string
           has_business?: boolean | null
           id?: number
         }
