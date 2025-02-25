@@ -2,12 +2,18 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
+import { createClient } from '@supabase/supabase-js';
 
 type FormData = {
   email: string;
   hasBusinesss: string;
   businessInstagram?: string;
 };
+
+const supabase = createClient(
+  'https://exntispzyiegclwrvoqt.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV4bnRpc3B6eWllZ2Nsd3J2b3F0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTA3OTc2NDQsImV4cCI6MjAyNjM3MzY0NH0.wGuFt35kQWo7lz5ziWNq95W8s8ukr3qhOcU-5UAp3HE'
+);
 
 const Index = () => {
   const navigate = useNavigate();
@@ -27,13 +33,36 @@ const Index = () => {
     return (filledFields / totalFields) * 100;
   };
 
-  const handleClick = () => {
-    navigate("/loading");
+  const handleClick = async (data: FormData) => {
+    try {
+      // Inserir dados no Supabase
+      const { error } = await supabase
+        .from('leads')
+        .insert([
+          {
+            email: data.email,
+            has_business: data.hasBusinesss === 'yes',
+            business_instagram: data.businessInstagram || null,
+            created_at: new Date().toISOString(),
+          }
+        ]);
+
+      if (error) {
+        throw error;
+      }
+
+      // Redirecionar para a página de loading
+      navigate("/loading");
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Ocorreu um erro ao salvar seus dados. Por favor, tente novamente.');
+    }
   };
 
   const onSubmit = (data: FormData) => {
     console.log(data);
     setProgress(100);
+    handleClick(data);
   };
 
   // Update progress when form fields change
@@ -139,8 +168,7 @@ const Index = () => {
         )}
 
         <button
-          type="button"
-          onClick={handleClick}
+          type="submit"
           disabled={progress < 100}
           className={`w-full bg-yellow-500 text-black font-bold py-4 px-8 rounded-xl transform transition-all duration-300 ${
             progress === 100 ? 'hover:bg-yellow-400 hover:scale-105 active:scale-95' : 'opacity-50 cursor-not-allowed'
