@@ -5,8 +5,8 @@ import { useState, useEffect } from "react";
 
 type FormData = {
   email: string;
-  instagram: string;
   hasBusinesss: string;
+  businessInstagram?: string;
 };
 
 const Index = () => {
@@ -15,11 +15,16 @@ const Index = () => {
   const { register, handleSubmit, watch } = useForm<FormData>();
 
   const watchAllFields = watch();
+  const hasBusiness = watch("hasBusinesss") === "yes";
   
   const calculateProgress = () => {
-    const fields = [watchAllFields.email, watchAllFields.instagram, watchAllFields.hasBusinesss];
-    const filledFields = fields.filter(Boolean).length;
-    return (filledFields / 3) * 100;
+    const requiredFields = [watchAllFields.email, watchAllFields.hasBusinesss];
+    if (hasBusiness) {
+      requiredFields.push(watchAllFields.businessInstagram);
+    }
+    const filledFields = requiredFields.filter(Boolean).length;
+    const totalFields = hasBusiness ? 3 : 2;
+    return (filledFields / totalFields) * 100;
   };
 
   const handleClick = () => {
@@ -34,7 +39,7 @@ const Index = () => {
   // Update progress when form fields change
   useEffect(() => {
     setProgress(calculateProgress());
-  }, [watchAllFields]);
+  }, [watchAllFields, hasBusiness]);
 
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4">
@@ -96,18 +101,6 @@ const Index = () => {
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="instagram" className="block text-white text-sm font-medium">Instagram Profissional</label>
-          <input
-            {...register("instagram")}
-            type="text"
-            id="instagram"
-            required
-            className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-            placeholder="@seuperfil"
-          />
-        </div>
-
-        <div className="space-y-2">
           <label className="block text-white text-sm font-medium mb-2">Você tem um negócio?</label>
           <div className="flex gap-4">
             <label className="flex items-center space-x-2">
@@ -131,6 +124,20 @@ const Index = () => {
           </div>
         </div>
 
+        {hasBusiness && (
+          <div className="space-y-2 animate-fade-down">
+            <label htmlFor="businessInstagram" className="block text-white text-sm font-medium">Qual é o @ do seu negócio?</label>
+            <input
+              {...register("businessInstagram")}
+              type="text"
+              id="businessInstagram"
+              required
+              className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+              placeholder="@seunegocio"
+            />
+          </div>
+        )}
+
         <button
           type="button"
           onClick={handleClick}
@@ -139,7 +146,7 @@ const Index = () => {
             progress === 100 ? 'hover:bg-yellow-400 hover:scale-105 active:scale-95' : 'opacity-50 cursor-not-allowed'
           } shadow-[0_8px_16px_rgba(245,158,11,0.3)]`}
         >
-          Saber mais
+          Receber livro
         </button>
       </form>
     </div>
