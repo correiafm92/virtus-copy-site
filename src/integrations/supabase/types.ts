@@ -20,7 +20,7 @@ export type Database = {
         Insert: {
           business_instagram?: string | null
           created_at?: string | null
-          "email (text)": string
+          "email (text)"?: string
           has_business?: boolean | null
           id?: number
         }
