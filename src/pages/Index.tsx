@@ -6,6 +6,12 @@ const Index = () => {
 
   const handleClick = () => {
     setIsClicking(true);
+    
+    // Track button click with Meta Pixel
+    if (window.fbq) {
+      window.fbq('track', 'Lead');
+    }
+    
     window.location.href = "https://drive.google.com/file/d/1HXaWVWHJNIRgLv0uxL5BmDo0CfWV6IYz/view?usp=drive_link";
   };
 
