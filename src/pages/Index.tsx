@@ -79,27 +79,6 @@ const Index = () => {
         ></iframe>
       </div>
 
-      {/* Countdown timer */}
-      <div className="mb-8">
-        <div className="flex items-center justify-center space-x-4 text-white">
-          <div className="text-center">
-            <div className="text-3xl md:text-5xl font-bold">{String(timeLeft.hours).padStart(2, '0')}</div>
-            <div className="text-xs uppercase text-gray-400">horas</div>
-          </div>
-          <div className="text-2xl md:text-4xl font-bold">:</div>
-          <div className="text-center">
-            <div className="text-3xl md:text-5xl font-bold">{String(timeLeft.minutes).padStart(2, '0')}</div>
-            <div className="text-xs uppercase text-gray-400">minutos</div>
-          </div>
-          <div className="text-2xl md:text-4xl font-bold">:</div>
-          <div className="text-center">
-            <div className="text-3xl md:text-5xl font-bold">{String(timeLeft.seconds).padStart(2, '0')}</div>
-            <div className="text-xs uppercase text-gray-400">segundos</div>
-          </div>
-        </div>
-        <p className="text-center text-yellow-500 mt-2 font-medium">Para encerrar a oferta</p>
-      </div>
-
       <button
         onClick={handleClick}
         disabled={isClicking}
@@ -109,6 +88,27 @@ const Index = () => {
       >
         {isClicking ? 'Redirecionando...' : 'Diagnóstico gratuito'}
       </button>
+
+      {/* Countdown timer - now smaller and below the button */}
+      <div className="mt-8">
+        <div className="flex items-center justify-center space-x-2 text-white">
+          <div className="text-center">
+            <div className="text-xl md:text-2xl font-bold">{String(timeLeft.hours).padStart(2, '0')}</div>
+            <div className="text-xs uppercase text-gray-400">h</div>
+          </div>
+          <div className="text-xl md:text-2xl font-bold">:</div>
+          <div className="text-center">
+            <div className="text-xl md:text-2xl font-bold">{String(timeLeft.minutes).padStart(2, '0')}</div>
+            <div className="text-xs uppercase text-gray-400">m</div>
+          </div>
+          <div className="text-xl md:text-2xl font-bold">:</div>
+          <div className="text-center">
+            <div className="text-xl md:text-2xl font-bold">{String(timeLeft.seconds).padStart(2, '0')}</div>
+            <div className="text-xs uppercase text-gray-400">s</div>
+          </div>
+        </div>
+        <p className="text-center text-yellow-500 mt-1 text-sm font-medium">Para encerrar a oferta</p>
+      </div>
     </div>
   );
 };
