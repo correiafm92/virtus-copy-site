@@ -12,7 +12,7 @@ const Index = () => {
       window.fbq('track', 'Lead');
     }
     
-    window.location.href = "https://drive.google.com/file/d/1HXaWVWHJNIRgLv0uxL5BmDo0CfWV6IYz/view?usp=drive_link";
+    window.location.href = "https://form.respondi.app/kPZ73POt";
   };
 
   return (
@@ -22,15 +22,18 @@ const Index = () => {
       </h1>
       
       <p className="text-gray-400 text-lg md:text-xl mb-8 text-center">
-        Clique abaixo para receber seu livro gratuito!
+        Mais de 2 mil anos de conhecimento em um só video! Aperte o play no video
       </p>
 
-      <div className="relative w-64 h-64 mb-12">
-        <img
-          src="https://i.postimg.cc/fWcBvRn7/A-vibrant-book-cover-design-for-a-philosophy-book-titled-Logica-showcasing-a-silhouetted-portrait-o.png"
-          alt="Capa do livro"
-          className="w-full h-full rounded-lg object-cover shadow-xl"
-        />
+      <div className="relative w-full max-w-3xl mb-12 aspect-video">
+        <iframe 
+          src="https://www.youtube.com/embed/iqsZuTRzT3o?si=AiHFwZRg54EoLfl7" 
+          title="YouTube video player" 
+          frameBorder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowFullScreen
+          className="w-full h-full rounded-lg shadow-xl"
+        ></iframe>
       </div>
 
       <button
@@ -40,7 +43,7 @@ const Index = () => {
           ${!isClicking ? 'hover:bg-yellow-400 hover:scale-105 active:scale-95' : 'opacity-50 cursor-not-allowed'}
           shadow-[0_8px_16px_rgba(245,158,11,0.3)]`}
       >
-        {isClicking ? 'Redirecionando...' : 'Receber livro'}
+        {isClicking ? 'Redirecionando...' : 'Diagnóstico gratuito'}
       </button>
     </div>
   );
