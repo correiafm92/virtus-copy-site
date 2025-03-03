@@ -1,8 +1,51 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Index = () => {
   const [isClicking, setIsClicking] = useState(false);
+  const [timeLeft, setTimeLeft] = useState({
+    hours: 7,
+    minutes: 0,
+    seconds: 0
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prevTime => {
+        // Calculate new time
+        let newHours = prevTime.hours;
+        let newMinutes = prevTime.minutes;
+        let newSeconds = prevTime.seconds;
+
+        if (newSeconds > 0) {
+          newSeconds--;
+        } else {
+          if (newMinutes > 0) {
+            newMinutes--;
+            newSeconds = 59;
+          } else {
+            if (newHours > 0) {
+              newHours--;
+              newMinutes = 59;
+              newSeconds = 59;
+            } else {
+              // Timer reached zero
+              clearInterval(timer);
+            }
+          }
+        }
+
+        return {
+          hours: newHours,
+          minutes: newMinutes,
+          seconds: newSeconds
+        };
+      });
+    }, 1000);
+
+    // Cleanup the interval on component unmount
+    return () => clearInterval(timer);
+  }, []);
 
   const handleClick = () => {
     setIsClicking(true);
@@ -34,6 +77,27 @@ const Index = () => {
           allowFullScreen
           className="w-full h-full rounded-lg shadow-xl"
         ></iframe>
+      </div>
+
+      {/* Countdown timer */}
+      <div className="mb-8">
+        <div className="flex items-center justify-center space-x-4 text-white">
+          <div className="text-center">
+            <div className="text-3xl md:text-5xl font-bold">{String(timeLeft.hours).padStart(2, '0')}</div>
+            <div className="text-xs uppercase text-gray-400">horas</div>
+          </div>
+          <div className="text-2xl md:text-4xl font-bold">:</div>
+          <div className="text-center">
+            <div className="text-3xl md:text-5xl font-bold">{String(timeLeft.minutes).padStart(2, '0')}</div>
+            <div className="text-xs uppercase text-gray-400">minutos</div>
+          </div>
+          <div className="text-2xl md:text-4xl font-bold">:</div>
+          <div className="text-center">
+            <div className="text-3xl md:text-5xl font-bold">{String(timeLeft.seconds).padStart(2, '0')}</div>
+            <div className="text-xs uppercase text-gray-400">segundos</div>
+          </div>
+        </div>
+        <p className="text-center text-yellow-500 mt-2 font-medium">Para encerrar a oferta</p>
       </div>
 
       <button
