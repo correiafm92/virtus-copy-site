@@ -55,7 +55,7 @@ const Index = () => {
       window.fbq('track', 'Lead');
     }
     
-    window.location.href = "https://form.respondi.app/kPZ73POt";
+    window.location.href = "https://form.typeform.com/to/AgikNJjy";
   };
 
   return (
