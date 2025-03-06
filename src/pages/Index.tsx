@@ -65,7 +65,7 @@ const Index = () => {
       </h1>
       
       <p className="text-gray-400 text-lg md:text-xl mb-8 text-center">
-        Mais de 2 mil anos de conhecimento em um só video! Aperte o play no video
+        ‼️Se prepare: ao final deste vídeo, você não apenas entenderá o jogo, mas estará pronto para jogá-lo como um verdadeiro empresário(a)‼️
       </p>
 
       <div className="relative w-full max-w-3xl mb-12 aspect-video">
