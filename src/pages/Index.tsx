@@ -80,6 +80,24 @@ const Index = () => {
     
     // Show the form instead of redirecting
     setShowForm(true);
+    
+    // Force reload the Respondi form
+    setTimeout(() => {
+      const respondiScripts = document.querySelectorAll('script[src="https://embed.respondi.app/embed.js"]');
+      if (respondiScripts.length > 0) {
+        // Remove old script to force refresh
+        respondiScripts.forEach(script => {
+          if (script.id !== 'respondi_src') {
+            script.remove();
+          }
+        });
+      }
+      
+      // Reinitialize Respondi
+      if (window.Respondi && typeof window.Respondi.init === 'function') {
+        window.Respondi.init();
+      }
+    }, 100);
   };
 
   return (
@@ -121,15 +139,18 @@ const Index = () => {
           {isClicking ? 'Carregando formulário...' : 'Diagnóstico gratuito'}
         </button>
       ) : (
-        /* Respondi Form Container - only shown after button click */
         <div 
+          id="respondi-form-container"
           className={`w-full max-w-3xl transition-all duration-500 ease-out ${showForm ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
-          data-respondi-container=""
-          data-respondi-mode="regular"
-          data-respondi-src="https://form.respondi.app/P314ziSx"
-          data-respondi-width="100%"
-          data-respondi-height="600px"
-        ></div>
+        >
+          <div
+            data-respondi-container=""
+            data-respondi-mode="regular"
+            data-respondi-src="https://form.respondi.app/P314ziSx"
+            data-respondi-width="100%"
+            data-respondi-height="600px"
+          ></div>
+        </div>
       )}
 
       {/* Countdown timer - now smaller and below the form/button */}
