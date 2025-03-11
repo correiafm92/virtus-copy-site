@@ -2,12 +2,14 @@
 import { useState, useEffect } from "react";
 
 const Index = () => {
+  const [isClicking, setIsClicking] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
     hours: 7,
     minutes: 0,
     seconds: 0
   });
   const [isVisible, setIsVisible] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     // Animation trigger
@@ -68,6 +70,18 @@ const Index = () => {
     }
   }, []);
 
+  const handleClick = () => {
+    setIsClicking(true);
+    
+    // Track button click with Meta Pixel
+    if (window && window.fbq) {
+      window.fbq('track', 'Lead');
+    }
+    
+    // Show the form instead of redirecting
+    setShowForm(true);
+  };
+
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4">
       <h1 
@@ -96,17 +110,29 @@ const Index = () => {
         ></iframe>
       </div>
 
-      {/* Respondi Form Container */}
-      <div 
-        className={`w-full max-w-3xl transition-all duration-1000 delay-700 ease-out ${isVisible ? 'opacity-100' : 'opacity-0 transform translate-y-6'}`}
-        data-respondi-container=""
-        data-respondi-mode="regular"
-        data-respondi-src="https://form.respondi.app/P314ziSx"
-        data-respondi-width="100%"
-        data-respondi-height="600px"
-      ></div>
+      {!showForm ? (
+        <button
+          onClick={handleClick}
+          disabled={isClicking}
+          className={`w-full max-w-md bg-yellow-500 text-black font-bold py-4 px-8 rounded-xl transform transition-all duration-1000 delay-700 ease-out
+            ${!isClicking ? 'hover:bg-yellow-400 hover:scale-105 active:scale-95' : 'opacity-50 cursor-not-allowed'}
+            shadow-[0_8px_16px_rgba(245,158,11,0.3)] ${isVisible ? 'opacity-100' : 'opacity-0 transform translate-y-6'}`}
+        >
+          {isClicking ? 'Carregando formulário...' : 'Diagnóstico gratuito'}
+        </button>
+      ) : (
+        /* Respondi Form Container - only shown after button click */
+        <div 
+          className={`w-full max-w-3xl transition-all duration-500 ease-out ${showForm ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+          data-respondi-container=""
+          data-respondi-mode="regular"
+          data-respondi-src="https://form.respondi.app/P314ziSx"
+          data-respondi-width="100%"
+          data-respondi-height="600px"
+        ></div>
+      )}
 
-      {/* Countdown timer - now smaller and below the form */}
+      {/* Countdown timer - now smaller and below the form/button */}
       <div className={`mt-8 transition-all duration-1000 delay-900 ease-out ${isVisible ? 'opacity-100' : 'opacity-0 transform translate-y-6'}`}>
         <div className="flex items-center justify-center space-x-2 text-white">
           <div className="text-center">
