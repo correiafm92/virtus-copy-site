@@ -80,7 +80,7 @@ const Index = () => {
       <p 
         className={`text-gray-400 text-lg md:text-xl mb-8 text-center transition-all duration-1000 delay-300 ease-out ${isVisible ? 'opacity-100' : 'opacity-0 transform translate-y-6'}`}
       >
-        ‼️Se prepare: ao final deste vídeo, você não apenas entenderá o jogo, mas estará pronto para jogá-lo como um verdadeiro empresário(a)‼️
+        Aperte o play no vídeo para começar a aplicar as estratégias
       </p>
 
       <div 
