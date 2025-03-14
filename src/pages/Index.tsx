@@ -88,9 +88,7 @@ const Index = () => {
       >
         <TypewriterText 
           text="𝚄𝚂𝙴 𝙰 𝙵𝙸𝙻𝙾𝚂𝙾𝙵𝙸𝙰 𝙰𝙾 𝚂𝙴𝚄 𝙵𝙰𝚅𝙾𝚁 𝙿𝙰𝚁𝙰 𝙴𝚂𝙲𝙰𝙻𝙰𝚁 𝚂𝚄𝙰𝚂 𝚅𝙴𝙽𝙳𝙰𝚂"
-          className="font-typewriter text-4xl md:text-6xl font-bold text-white text-center mb-8 tracking-tight [text-shadow:0_4px_8px_rgba(255,255,255,0.2)]"
-          delay={1000}
-          speed={100}
+          className="text-4xl md:text-6xl font-bold text-white text-center mb-8 tracking-tight [text-shadow:0_4px_8px_rgba(255,255,255,0.2)]"
         />
       </div>
       
