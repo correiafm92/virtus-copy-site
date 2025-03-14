@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import TypewriterText from "../components/TypewriterText";
 
@@ -93,7 +94,7 @@ const Index = () => {
       </div>
       
       <p 
-        className={`text-gray-400 text-lg md:text-xl mb-8 text-center transition-all duration-1000 delay-300 ease-out ${isVisible ? 'opacity-100' : 'opacity-0 transform translate-y-6'}`}
+        className={`font-typewriter text-gray-400 text-lg md:text-xl mb-8 text-center transition-all duration-1000 delay-300 ease-out ${isVisible ? 'opacity-100' : 'opacity-0 transform translate-y-6'}`}
       >
         Aperte o play no vídeo para começar a aplicar as estratégias
       </p>
@@ -114,7 +115,7 @@ const Index = () => {
       <button
         onClick={handleClick}
         disabled={isClicking}
-        className={`w-full max-w-md bg-yellow-500 text-black font-bold py-4 px-8 rounded-xl transform transition-all duration-1000 delay-700 ease-out
+        className={`font-typewriter w-full max-w-md bg-yellow-500 text-black font-bold py-4 px-8 rounded-xl transform transition-all duration-1000 delay-700 ease-out
           ${!isClicking ? 'hover:bg-yellow-400 hover:scale-105 active:scale-95' : 'opacity-50 cursor-not-allowed'}
           shadow-[0_8px_16px_rgba(245,158,11,0.3)] ${isVisible ? 'opacity-100' : 'opacity-0 transform translate-y-6'}`}
       >
@@ -139,7 +140,7 @@ const Index = () => {
             <div className="text-xs uppercase text-gray-400">s</div>
           </div>
         </div>
-        <p className="text-center text-yellow-500 mt-1 text-sm font-medium">Para encerrar a oferta</p>
+        <p className="font-typewriter text-center text-yellow-500 mt-1 text-sm font-medium">Para encerrar a oferta</p>
       </div>
     </div>
   );
