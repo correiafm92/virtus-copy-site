@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import TypewriterText from "../components/TypewriterText";
 
 const Index = () => {
   const [isClicking, setIsClicking] = useState(false);
@@ -82,12 +83,16 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4">
-      <h1 
-        className={`text-4xl md:text-6xl font-bold text-white text-center mb-8 tracking-tight [text-shadow:0_4px_8px_rgba(255,255,255,0.2)] transition-all duration-1000 ease-out ${isVisible ? 'opacity-100' : 'opacity-0 transform translate-y-6'}`} 
-        style={{ WebkitTextStroke: "1px rgba(255,255,255,0.1)" }}
+      <div 
+        className={`transition-all duration-1000 ease-out ${isVisible ? 'opacity-100' : 'opacity-0 transform translate-y-6'}`}
       >
-        USE A FILOSOFIA AO SEU FAVOR PARA ESCALAR SUAS VENDAS
-      </h1>
+        <TypewriterText 
+          text="𝚄𝚂𝙴 𝙰 𝙵𝙸𝙻𝙾𝚂𝙾𝙵𝙸𝙰 𝙰𝙾 𝚂𝙴𝚄 𝙵𝙰𝚅𝙾𝚁 𝙿𝙰𝚁𝙰 𝙴𝚂𝙲𝙰𝙻𝙰𝚁 𝚂𝚄𝙰𝚂 𝚅𝙴𝙽𝙳𝙰𝚂"
+          className="font-typewriter text-4xl md:text-6xl font-bold text-white text-center mb-8 tracking-tight [text-shadow:0_4px_8px_rgba(255,255,255,0.2)]"
+          delay={1000}
+          speed={100}
+        />
+      </div>
       
       <p 
         className={`text-gray-400 text-lg md:text-xl mb-8 text-center transition-all duration-1000 delay-300 ease-out ${isVisible ? 'opacity-100' : 'opacity-0 transform translate-y-6'}`}

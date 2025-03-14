@@ -8,6 +8,12 @@
     @apply bg-black text-white;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+  
+  /* Estilo para fonte typewriter */
+  .font-typewriter {
+    font-family: 'Courier New', monospace;
+    letter-spacing: -0.5px;
+  }
 }
 
 ::-webkit-scrollbar {
